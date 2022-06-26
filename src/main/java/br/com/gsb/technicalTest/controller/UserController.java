@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gsb.technicalTest.dao.UserDao;
 import br.com.gsb.technicalTest.model.User;
+import br.com.gsb.technicalTest.service.UserService;
 
 @RestController
 @RequestMapping("/user")
@@ -22,15 +23,22 @@ public class UserController {
 	@Autowired
 	private UserDao dao;
 	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping
 	public ResponseEntity<List<User>> getAll()
 	{
-		return ResponseEntity.ok(dao.findAll());
+		List<User> allUsers = dao.findAll();
+		userService.formatBirthDate(allUsers); 
+	
+		
+		return ResponseEntity.ok(allUsers);
 	}
 	
 	@PostMapping
 	public ResponseEntity<User> Post(@RequestBody User user)
-	{
+	{	
 		return ResponseEntity.ok(dao.save(user));
 	}
 

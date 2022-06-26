@@ -23,7 +23,7 @@ public class User implements Serializable {
     private long id;
     
     @NotNull
-    @Size(min = 5, max = 100)
+    @Size(min = 2, max = 100)
     private String name;
     
     @NotNull
@@ -32,18 +32,21 @@ public class User implements Serializable {
     
     private char gender;
     
-    @Size(min = 13, max = 13)
+    @Size(min = 6, max = 20)
     private String phone;
     
     private Date birthDate;
+    
+    private String formatedBirthDate;
 
-    public User(long id, String name, String email, char gender, String phone, Date birthDate) {
+    public User(long id, String name, String email, char gender, String phone, Date birthDate, String formatedBirthDate) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.phone = phone;
         this.birthDate = birthDate;
+        this.formatedBirthDate = formatedBirthDate;
     }
 
     public User() {}
@@ -95,4 +98,14 @@ public class User implements Serializable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
+
+	public String getFormatedBirthDate() {
+		return formatedBirthDate;
+	}
+
+	public void setFormatedBirthDate(String formatedBirthDate) {
+		this.formatedBirthDate = formatedBirthDate;
+	}
+    
+   
 }
